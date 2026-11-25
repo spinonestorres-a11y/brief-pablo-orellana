@@ -1,0 +1,14 @@
+# Backend Apps Script: no se publica en el repo público
+backend/
+
+# Archivos de sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Credenciales y configuración local de clasp
+.clasp.json
+.clasprc.json
+node_modules/

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brief sitio web · Pablo Orellana · ISI LABS</title>
+<meta name="description" content="Formulario de levantamiento para el sitio web de Pablo Orellana, prevencionista de riesgos. Desarrollado por ISI LABS.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0B1F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236C3CE9'/%3E%3Cstop offset='1' stop-color='%23FF2E6D'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='44' height='44' rx='12' fill='url(%23g)'/%3E%3Crect x='18' y='19' width='8' height='16' rx='2' fill='%23fff'/%3E%3Cpolygon points='19,15 27,8 31,11 23,18' fill='%2319E5B6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   ISI LABS · Brief de sitio web
+   Paleta de marca: azul noche #0B0B1F · violeta #6C3CE9
+   magenta #FF2E6D · menta #19E5B6
+   ========================================================= */
+:root{
+  --noche:#0B0B1F; --noche-2:#121231; --noche-3:#1A1A40;
+  --violeta:#6C3CE9; --magenta:#FF2E6D; --menta:#19E5B6;
+  --texto:#F2F1FA; --texto-2:#B9B7D3; --texto-3:#7F7CA3;
+  --borde:rgba(255,255,255,.09); --borde-2:rgba(255,255,255,.18);
+  --error:#FF6B8E; --aviso:#FFC857;
+  --radio:16px;
+  --grad:linear-gradient(135deg,var(--violeta),var(--magenta));
+  --f-tit:'Bricolage Grotesque',system-ui,sans-serif;
+  --f-txt:'Inter Tight',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--f-txt);background:var(--noche);color:var(--texto);
+  min-height:100vh;line-height:1.5;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(900px 500px at 110% -10%,rgba(108,60,233,.28),transparent 60%),
+    radial-gradient(700px 420px at -10% 110%,rgba(255,46,109,.14),transparent 60%);
+  background-attachment:fixed;
+}
+a{color:var(--menta)}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+
+/* ---------- Encabezado ---------- */
+header.top{position:sticky;top:0;z-index:20;background:rgba(11,11,31,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--borde)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}
+.logo{display:flex;align-items:center;height:40px}
+.logo svg{height:40px;width:auto}
+.cliente-chip{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2);border:1px solid var(--borde-2);border-radius:999px;padding:6px 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:55vw}
+.cliente-chip b{color:var(--menta);font-weight:600}
+.progreso{padding:0 0 12px}
+.prog-meta{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--texto-3);margin-bottom:6px;letter-spacing:.04em}
+.prog-meta .guardado{color:var(--menta);opacity:0;transition:opacity .3s}
+.prog-meta .guardado.on{opacity:1}
+.barra{height:6px;background:var(--noche-3);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violeta),var(--magenta),var(--menta));border-radius:99px;transition:width .45s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- Pasos ---------- */
+main{padding:26px 0 140px}
+.step{display:none;animation:entra .35s ease}
+.step.activo{display:block}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kicker{font-family:var(--f-mono);font-size:12px;color:var(--menta);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+h1,h2{font-family:var(--f-tit);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+h1{font-size:clamp(34px,7vw,58px);margin-bottom:16px}
+h2{font-size:clamp(26px,5vw,38px);margin-bottom:8px}
+h1 em,h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--texto-2);font-size:17px;max-width:640px;margin-bottom:26px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015));border:1px solid var(--borde);border-radius:var(--radio);padding:22px;margin-bottom:16px}
+.card h3{font-family:var(--f-tit);font-size:19px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.card h3 .n{font-family:var(--f-mono);font-size:11px;color:var(--noche);background:var(--menta);border-radius:6px;padding:2px 7px}
+
+/* ---------- Campos ---------- */
+.field{margin-bottom:18px}
+.field:last-child{margin-bottom:0}
+.lbl{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.lbl .req{color:var(--magenta);margin-left:3px}
+.ayuda{display:block;font-size:13px;color:var(--texto-3);margin:-2px 0 8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+input[type=text],input[type=email],input[type=tel],input[type=url],input[type=number],input[type=date],select,textarea{
+  width:100%;min-height:50px;padding:13px 15px;font:inherit;font-size:16px;color:var(--texto);
+  background:var(--noche-2);border:1.5px solid var(--borde-2);border-radius:12px;outline:none;transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;appearance:none;
+}
+textarea{min-height:110px;resize:vertical}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--texto-2) 50%),linear-gradient(135deg,var(--texto-2) 50%,transparent 50%);background-position:calc(100% - 20px) 22px,calc(100% - 15px) 22px;background-size:5px 5px;background-repeat:no-repeat;padding-right:40px}
+input::placeholder,textarea::placeholder{color:var(--texto-3)}
+input:focus,select:focus,textarea:focus{border-color:var(--violeta);box-shadow:0 0 0 4px rgba(108,60,233,.25)}
+input[type=date]{color-scheme:dark}
+.field.invalido input,.field.invalido select,.field.invalido textarea{border-color:var(--error)}
+.field.invalido .chips{outline:1.5px solid var(--error);outline-offset:6px;border-radius:12px}
+.msg-error{display:none;color:var(--error);font-size:13px;margin-top:6px}
+.field.invalido .msg-error{display:block}
+
+/* Chips (checkbox / radio) */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;cursor:pointer;user-select:none}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 15px;border:1.5px solid var(--borde-2);border-radius:999px;font-size:15px;color:var(--texto-2);background:var(--noche-2);transition:all .18s}
+.chip span::before{content:"";width:16px;height:16px;border-radius:5px;border:1.5px solid var(--texto-3);flex:none;transition:all .18s}
+.chip input[type=radio]+span::before{border-radius:50%}
+.chip input:checked+span{border-color:var(--violeta);color:var(--texto);background:rgba(108,60,233,.18)}
+.chip input:checked+span::before{background:var(--menta);border-color:var(--menta);box-shadow:inset 0 0 0 3px var(--noche-2)}
+.chip input:focus-visible+span{box-shadow:0 0 0 4px rgba(108,60,233,.35)}
+
+/* Tarjetas de opción (servicios / funcionalidades) */
+.opciones{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:640px){.opciones{grid-template-columns:1fr}}
+.opcion{position:relative;cursor:pointer;display:block}
+.opcion input{position:absolute;opacity:0;pointer-events:none}
+.opcion .caja{display:block;height:100%;padding:14px 14px 14px 46px;border:1.5px solid var(--borde-2);border-radius:14px;background:var(--noche-2);transition:all .18s;position:relative}
+.opcion .caja::before{content:"";position:absolute;left:15px;top:16px;width:18px;height:18px;border-radius:6px;border:1.5px solid var(--texto-3);transition:all .18s}
+.opcion .t{display:block;font-weight:600;font-size:15px;line-height:1.3;margin-bottom:4px}
+.opcion .d{display:block;font-size:13px;color:var(--texto-3);line-height:1.4}
+.opcion .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--noche);background:var(--menta);border-radius:5px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+.opcion input:checked+.caja{border-color:var(--violeta);background:rgba(108,60,233,.16)}
+.opcion input:checked+.caja::before{background:var(--menta);border-color:var(--menta);box-shadow:inset 0 0 0 3px var(--noche-2)}
+.opcion input:focus-visible+.caja{box-shadow:0 0 0 4px rgba(108,60,233,.35)}
+
+/* Notas de experto */
+.nota{display:flex;gap:12px;padding:14px 16px;border-radius:14px;margin:4px 0 18px;font-size:14px;color:var(--texto-2);background:rgba(25,229,182,.07);border:1px solid rgba(25,229,182,.25)}
+.nota.aviso{background:rgba(255,200,87,.07);border-color:rgba(255,200,87,.3)}
+.nota .ico{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-family:var(--f-mono);font-weight:600;font-size:13px;color:var(--noche);background:var(--menta)}
+.nota.aviso .ico{background:var(--aviso)}
+.nota b{color:var(--texto)}
+
+/* Precarga LinkedIn */
+.precarga{font-family:var(--f-mono);font-size:11px;color:var(--menta);letter-spacing:.04em;margin-left:6px;font-weight:400}
+
+/* Subida de archivos */
+.drop{display:block;border:1.5px dashed var(--borde-2);border-radius:14px;padding:18px;text-align:center;background:var(--noche-2);cursor:pointer;transition:all .2s}
+.drop:hover,.drop.sobre{border-color:var(--menta);background:rgba(25,229,182,.06)}
+.drop input{display:none}
+.drop .t{font-weight:600}
+.drop .d{font-size:13px;color:var(--texto-3)}
+.lista-arch{list-style:none;margin-top:10px;display:grid;gap:6px}
+.lista-arch li{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;padding:8px 12px;border-radius:10px;background:var(--noche-3)}
+.lista-arch li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lista-arch li small{font-family:var(--f-mono);color:var(--texto-3);flex:none}
+.lista-arch li button{flex:none;background:none;border:0;color:var(--error);font-size:18px;cursor:pointer;width:30px;height:30px}
+
+/* Bienvenida */
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 26px}
+.pill{font-family:var(--f-mono);font-size:12px;padding:8px 12px;border-radius:999px;border:1px solid var(--borde-2);color:var(--texto-2)}
+.pill b{color:var(--texto)}
+.pasos-lista{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:640px){.pasos-lista{grid-template-columns:1fr}}
+.pasos-lista li{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--noche-2);font-size:14px;color:var(--texto-2)}
+.pasos-lista li i{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--menta);width:22px}
+
+/* Resumen */
+.resumen-sec{margin-bottom:18px}
+.resumen-sec h4{font-family:var(--f-tit);font-size:17px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.resumen-sec h4 button{font:500 12px var(--f-mono);color:var(--menta);background:none;border:1px solid rgba(25,229,182,.35);border-radius:8px;padding:5px 10px;cursor:pointer}
+.resumen-sec dl{display:grid;grid-template-columns:minmax(140px,38%) 1fr;gap:6px 14px;font-size:14px}
+@media(max-width:640px){.resumen-sec dl{grid-template-columns:1fr}.resumen-sec dd{margin-bottom:8px}}
+.resumen-sec dt{color:var(--texto-3)}
+.resumen-sec dd{color:var(--texto);white-space:pre-wrap;word-break:break-word}
+.vacio{color:var(--texto-3)!important;font-style:italic}
+
+/* ---------- Navegación inferior ---------- */
+nav.pie{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(11,11,31,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--borde);padding:12px 0 calc(12px + env(safe-area-inset-bottom))}
+.pie-in{display:flex;gap:10px;align-items:center}
+.btn{min-height:52px;padding:0 22px;border-radius:14px;font:700 16px var(--f-txt);cursor:pointer;border:0;transition:transform .12s,opacity .2s,box-shadow .2s;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-sec{background:transparent;color:var(--texto-2);border:1.5px solid var(--borde-2)}
+.btn-pri{flex:1;background:var(--grad);color:#fff;box-shadow:0 10px 30px -10px rgba(255,46,109,.6)}
+.btn-menta{background:var(--menta);color:var(--noche)}
+.pie-in .espacio{flex:1}
+
+/* ---------- Overlay envío / éxito ---------- */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(11,11,31,.94);display:none;align-items:center;justify-content:center;padding:24px}
+.overlay.on{display:flex}
+.overlay .box{max-width:520px;width:100%;text-align:center}
+.spinner{width:56px;height:56px;border-radius:50%;border:4px solid var(--noche-3);border-top-color:var(--menta);margin:0 auto 20px;animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.overlay h2{margin-bottom:10px}
+.overlay p{color:var(--texto-2)}
+.folio{display:inline-block;font-family:var(--f-mono);font-size:22px;color:var(--menta);border:1.5px solid var(--menta);border-radius:12px;padding:10px 18px;margin:18px 0}
+.check{width:72px;height:72px;border-radius:22px;background:var(--grad);display:grid;place-items:center;margin:0 auto 20px;font-size:36px;color:#fff}
+.det-envio{font-family:var(--f-mono);font-size:12px;color:var(--texto-3);margin-top:12px;min-height:18px}
+.acciones-ok{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);opacity:0;z-index:60;background:var(--noche-3);border:1px solid var(--borde-2);color:var(--texto);padding:12px 18px;border-radius:12px;font-size:14px;transition:all .3s;pointer-events:none;max-width:90vw}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+footer.firma{text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--texto-3);letter-spacing:.08em;padding:10px 0 0}
+
+/* ---------- Impresión (copia en PDF) ---------- */
+@media print{
+  body{background:#fff;color:#111}
+  header.top,nav.pie,.overlay,.toast{display:none!important}
+  .step{display:none!important}
+  .step[data-id=revision]{display:block!important}
+  .step[data-id=revision] .no-print{display:none!important}
+  .card{border:1px solid #ddd;background:#fff}
+  .resumen-sec dt{color:#555}.resumen-sec dd{color:#111}
+  h2 em{color:#6C3CE9;-webkit-text-fill-color:#6C3CE9}
+}
+</style>
+</head>
+<body>
+
+<!-- =================== ENCABEZADO =================== -->
+<header class="top">
+  <div class="wrap">
+    <div class="top-in">
+      <a class="logo" href="#" aria-label="ISI LABS">
+        <!-- Logo ISI LABS (SVG inline). Para usar el logo oficial, define CONFIG.LOGO_URL -->
+        <svg id="logoSvg" viewBox="0 0 168 44" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ISI LABS">
+          <defs>
+            <linearGradient id="isiGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#6C3CE9"/><stop offset="1" stop-color="#FF2E6D"/>
+            </linearGradient>
+          </defs>
+          <rect width="44" height="44" rx="12" fill="url(#isiGrad)"/>
+          <rect x="18" y="19" width="8" height="16" rx="2" fill="#fff"/>
+          <polygon points="19,15 27,8 31,11 23,18" fill="#19E5B6"/>
+          <text x="56" y="25" font-family="Bricolage Grotesque, system-ui, sans-serif" font-weight="800" font-size="25" fill="#F2F1FA" letter-spacing="-0.5">ísi</text>
+          <text x="57" y="39" font-family="JetBrains Mono, monospace" font-weight="600" font-size="9" fill="#19E5B6" letter-spacing="4.2">LABS</text>
+        </svg>
+      </a>
+      <div class="cliente-chip">Brief web · <b id="chipCliente">Pablo Orellana</b></div>
+    </div>
+    <div class="progreso">
+      <div class="prog-meta"><span id="progTxt">Inicio</span><span class="guardado" id="guardado">● Borrador guardado</span></div>
+      <div class="barra"><i id="progBar"></i></div>
+    </div>
+  </div>
+</header>
+
+<!-- =================== FORMULARIO =================== -->
+<main>
+<div class="wrap">
+<form id="brief" novalidate autocomplete="on">
+
+<!-- ========== 0 · BIENVENIDA ========== -->
+<section class="step" data-id="inicio" data-titulo="Inicio">
+  <div class="kicker">ISI LABS · Levantamiento de proyecto</div>
+  <h1>Hola Pablo, armemos tu <em>sitio web</em>.</h1>
+  <p class="lead">Este formulario reúne todo lo que necesitamos para diseñar una web que te posicione como prevencionista de riesgos y te traiga clientes. Incluye sugerencias pensadas para tu rubro: márcalas si te hacen sentido.</p>
+  <div class="hero-meta">
+    <span class="pill">⏱ <b>15–20 min</b></span>
+    <span class="pill">💾 Se guarda solo en este dispositivo</span>
+    <span class="pill">📱 Puedes llenarlo desde el celular</span>
+  </div>
+  <div class="card">
+    <h3>Lo que vamos a cubrir</h3>
+    <ul class="pasos-lista" id="listaPasos"></ul>
+  </div>
+  <div class="nota">
+    <span class="ico">i</span>
+    <div>Precargamos algunos datos desde tu <b>LinkedIn</b> (marcados con <span class="precarga" style="margin:0">◆ LinkedIn</span>). Revísalos y corrige lo que no calce. Si no sabes algo, déjalo en blanco: lo vemos juntos en la reunión.</div>
+  </div>
+</section>
+
+<!-- ========== 1 · TÚ Y TU MARCA ========== -->
+<section class="step" data-id="marca" data-titulo="Tú y tu marca">
+  <div class="kicker">Paso 1</div>
+  <h2>Tú y tu <em>marca</em></h2>
+  <p class="lead">Cómo quieres presentarte y cómo te contactan.</p>
+
+  <div class="card">
+    <h3><span class="n">01</span> Datos de contacto</h3>
+    <div class="grid2">
+      <div class="field" data-key="nombre">
+        <label class="lbl" for="nombre">Nombre completo<span class="req">*</span><span class="precarga">◆ LinkedIn</span></label>
+        <input type="text" id="nombre" name="nombre" required value="Pablo Francisco Andrés Orellana Núñez" autocomplete="name">
+        <span class="msg-error">Indica tu nombre.</span>
+      </div>
+      <div class="field" data-key="nombre_publico">
+        <label class="lbl" for="nombre_publico">Nombre a mostrar en la web</label>
+        <input type="text" id="nombre_publico" name="nombre_publico" placeholder="Ej: Pablo Orellana Núñez">
+      </div>
+      <div class="field" data-key="email">
+        <label class="lbl" for="email">Correo<span class="req">*</span></label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@correo.cl">
+        <span class="msg-error">Ingresa un correo válido.</span>
+      </div>
+      <div class="field" data-key="telefono">
+        <label class="lbl" for="telefono">Teléfono / WhatsApp<span class="req">*</span></label>
+        <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="+56 9 1234 5678">
+        <span class="msg-error">Ingresa un teléfono de contacto.</span>
+      </div>
+      <div class="field" data-key="ciudad">
+        <label class="lbl" for="ciudad">Ciudad base</label>
+        <input type="text" id="ciudad" name="ciudad" placeholder="Ej: Santiago, Rancagua, Antofagasta">
+      </div>
+      <div class="field" data-key="horario">
+        <label class="lbl" for="horario">Horario de atención</label>
+        <input type="text" id="horario" name="horario" placeholder="Ej: Lun–Vie 9:00–18:00">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="n">02</span> Enfoque de la web</h3>
+    <div class="field" data-key="objetivo">
+      <label class="lbl">¿Para qué quieres la web principalmente?<span class="req">*</span></label>
+      <div class="chips" data-name="objetivo" data-required-group>
+        <label class="chip"><input type="radio" name="objetivo" value="Consultora / servicios a empresas"><span>Vender servicios a empresas</span></label>
+        <label class="chip"><input type="radio" name="objetivo" value="Marca personal / perfil profesional"><span>Marca personal / perfil profesional</span></label>
+        <label class="chip"><input type="radio" name="objetivo" value="Ambas"><span>Ambas</span></label>
+      </div>
+      <span class="msg-error">Elige una opción.</span>
+    </div>
+    <div class="field" data-key="nombre_marca">
+      <label class="lbl">¿Con qué nombre sales al mercado?</label>
+      <div class="chips" data-name="nombre_marca">
+        <label class="chip"><input type="radio" name="nombre_marca" value="Mi nombre"><span>Mi nombre</span></label>
+        <label class="chip"><input type="radio" name="nombre_marca" value="Nombre de consultora"><span>Nombre de consultora</span></label>
+        <label class="chip"><input type="radio" name="nombre_marca" value="Aún no lo defino"><span>Aún no lo defino</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="nombre_consultora" data-if="nombre_marca=Nombre de consultora">
+      <label class="lbl" for="nombre_consultora">Nombre de la consultora y razón social (si existe)</label>
+      <input type="text" id="nombre_consultora" name="nombre_consultora" placeholder="Ej: Orellana Prevención SpA">
+    </div>
+    <div class="field" data-key="situacion_laboral">
+      <label class="lbl">¿Mantendrás tu trabajo actual mientras ofreces servicios?</label>
+      <div class="chips" data-name="situacion_laboral">
+        <label class="chip"><input type="radio" name="situacion_laboral" value="Sí, en paralelo"><span>Sí, en paralelo</span></label>
+        <label class="chip"><input type="radio" name="situacion_laboral" value="No, me dedico 100% a la consultora"><span>No, 100% independiente</span></label>
+        <label class="chip"><input type="radio" name="situacion_laboral" value="Prefiero conversarlo"><span>Prefiero conversarlo</span></label>
+      </div>
+    </div>
+    <div class="nota aviso" data-if="situacion_laboral=Sí, en paralelo">
+      <span class="ico">!</span>
+      <div>Antes de publicar servicios a terceros, revisa si tu contrato tiene <b>cláusulas de exclusividad o de conflicto de interés</b>, sobre todo si ofrecerías servicios al mismo rubro o a clientes de tu empleador. Lo tomamos en cuenta al redactar los textos.</div>
+    </div>
+    <div class="field" data-key="tiene_logo">
+      <label class="lbl">¿Tienes logo?</label>
+      <div class="chips" data-name="tiene_logo">
+        <label class="chip"><input type="radio" name="tiene_logo" value="Sí, lo subo en Archivos"><span>Sí, lo subo más adelante</span></label>
+        <label class="chip"><input type="radio" name="tiene_logo" value="No, necesito que ISI lo diseñe"><span>No, quiero que ISI lo diseñe</span></label>
+        <label class="chip"><input type="radio" name="tiene_logo" value="No necesito logo"><span>No necesito</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2 · CREDENCIALES Y TRAYECTORIA ========== -->
+<section class="step" data-id="credenciales" data-titulo="Credenciales y trayectoria">
+  <div class="kicker">Paso 2</div>
+  <h2>Credenciales y <em>trayectoria</em></h2>
+  <p class="lead">En prevención, la confianza se gana con respaldo verificable. Esto va directo a la sección "Sobre mí".</p>
+
+  <div class="card">
+    <h3><span class="n">01</span> Registro y formación</h3>
+    <div class="grid2">
+      <div class="field" data-key="categoria_experto">
+        <label class="lbl" for="categoria_experto">Categoría de Experto en Prevención</label>
+        <select id="categoria_experto" name="categoria_experto">
+          <option value="">Selecciona…</option>
+          <option>Experto profesional</option>
+          <option>Experto técnico</option>
+          <option>En trámite</option>
+          <option>No tengo registro</option>
+        </select>
+      </div>
+      <div class="field" data-key="registro_seremi">
+        <label class="lbl" for="registro_seremi">N° de registro SEREMI de Salud</label>
+        <input type="text" id="registro_seremi" name="registro_seremi" placeholder="Ej: RM/P-1234">
+      </div>
+    </div>
+    <div class="nota"><span class="ico">✓</span><div>Mostrar tu <b>categoría y N° de registro</b> con enlace de verificación es lo primero que revisa un mandante o una mutualidad. Es de los elementos que más credibilidad suman en una web de prevención.</div></div>
+    <div class="field" data-key="formacion">
+      <label class="lbl" for="formacion">Formación<span class="precarga">◆ LinkedIn</span></label>
+      <textarea id="formacion" name="formacion" rows="4">Ingeniería en Prevención de Riesgos, Calidad y Ambiente — Universidad Tecnológica INACAP (2010–2015)
+Técnico en Prevención de Riesgos — CFT INACAP (2010–2013)</textarea>
+    </div>
+    <div class="field" data-key="certificaciones">
+      <label class="lbl" for="certificaciones">Diplomados, postítulos y certificaciones</label>
+      <span class="ayuda">Ej: Auditor interno/líder ISO 45001, diplomado en minería, relator OTEC, primeros auxilios, trabajo en altura.</span>
+      <textarea id="certificaciones" name="certificaciones" rows="3"></textarea>
+    </div>
+    <div class="field" data-key="sence">
+      <label class="lbl">¿Dictas cursos con código SENCE (vía OTEC)?</label>
+      <div class="chips" data-name="sence">
+        <label class="chip"><input type="radio" name="sence" value="Sí"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="sence" value="No"><span>No</span></label>
+        <label class="chip"><input type="radio" name="sence" value="Me interesa a futuro"><span>Me interesa a futuro</span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="n">02</span> Experiencia</h3>
+    <div class="grid2">
+      <div class="field" data-key="cargo_actual">
+        <label class="lbl" for="cargo_actual">Cargo actual<span class="precarga">◆ LinkedIn</span></label>
+        <input type="text" id="cargo_actual" name="cargo_actual" value="Asesor HSE Senior — Normet Group">
+      </div>
+      <div class="field" data-key="anios_experiencia">
+        <label class="lbl" for="anios_experiencia">Años de experiencia</label>
+        <input type="number" id="anios_experiencia" name="anios_experiencia" min="0" max="50" inputmode="numeric" placeholder="Ej: 12">
+      </div>
+    </div>
+    <div class="field" data-key="trayectoria">
+      <label class="lbl" for="trayectoria">Trayectoria (empresas, cargos, años)<span class="precarga">◆ LinkedIn</span></label>
+      <textarea id="trayectoria" name="trayectoria" rows="5">Normet Group — Asesor HSE Senior (actual)
+Grupo PESCO — Área de Prevención de Riesgos, Calidad y Ambiente (jun 2019 – jul 2024)</textarea>
+    </div>
+    <div class="field" data-key="logros">
+      <label class="lbl" for="logros">Logros que puedas respaldar</label>
+      <span class="ayuda">Ej: "X años/HH sin accidentes con tiempo perdido en faena Y", "redujimos la tasa de accidentabilidad de A% a B%", "certificamos ISO 45001 en N meses", "N trabajadores capacitados".</span>
+      <textarea id="logros" name="logros" rows="4"></textarea>
+    </div>
+    <div class="nota aviso"><span class="ico">!</span><div>Usa solo <b>cifras que puedas respaldar</b> con registros (estadísticas de la mutualidad, certificados, informes). Un número inflado en la web de un prevencionista se detecta rápido y pesa en contra.</div></div>
+    <div class="field" data-key="bio">
+      <label class="lbl" for="bio">Cuéntanos de ti en tus palabras</label>
+      <span class="ayuda">Por qué te dedicas a esto, cómo trabajas, qué te diferencia. Lo pulimos nosotros; escribe como hablas.</span>
+      <textarea id="bio" name="bio" rows="5"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3 · SERVICIOS ========== -->
+<section class="step" data-id="servicios" data-titulo="Servicios">
+  <div class="kicker">Paso 3</div>
+  <h2>¿Qué <em>servicios</em> ofreces?</h2>
+  <p class="lead">Marca todo lo que haces o quieres ofrecer. Organizamos la lista según la normativa chilena vigente para que tus clientes entiendan qué les resuelves.</p>
+
+  <div class="card">
+    <h3><span class="n">01</span> Servicios</h3>
+    <div class="field" data-key="servicios">
+      <span class="lbl">Selecciona tus servicios<span class="req">*</span></span>
+      <div class="opciones" id="gridServicios" data-name="servicios" data-required-group></div>
+      <span class="msg-error">Elige al menos un servicio.</span>
+    </div>
+    <div class="field" data-key="servicios_otros">
+      <label class="lbl" for="servicios_otros">Otros servicios no listados</label>
+      <textarea id="servicios_otros" name="servicios_otros" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="n">02</span> Foco comercial</h3>
+    <div class="field" data-key="servicio_estrella">
+      <label class="lbl" for="servicio_estrella">Tu servicio estrella (el que más quieres vender)</label>
+      <input type="text" id="servicio_estrella" name="servicio_estrella" placeholder="Ej: Asesoría externa mensual para contratistas mineros">
+    </div>
+    <div class="field" data-key="modalidad">
+      <label class="lbl">Modalidad de trabajo</label>
+      <div class="chips" data-name="modalidad">
+        <label class="chip"><input type="checkbox" name="modalidad" value="Presencial en faena"><span>Presencial en faena</span></label>
+        <label class="chip"><input type="checkbox" name="modalidad" value="Remota"><span>Remota</span></label>
+        <label class="chip"><input type="checkbox" name="modalidad" value="Mixta"><span>Mixta</span></label>
+        <label class="chip"><input type="checkbox" name="modalidad" value="Por proyecto"><span>Por proyecto</span></label>
+        <label class="chip"><input type="checkbox" name="modalidad" value="Iguala mensual"><span>Iguala mensual</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="cobertura">
+      <label class="lbl" for="cobertura">Cobertura geográfica</label>
+      <input type="text" id="cobertura" name="cobertura" placeholder="Ej: RM y regiones del norte; todo Chile para servicios remotos">
+    </div>
+    <div class="field" data-key="precios">
+      <label class="lbl">¿Mostramos precios en la web?</label>
+      <div class="chips" data-name="precios">
+        <label class="chip"><input type="radio" name="precios" value="No, solo cotización"><span>No, solo cotización</span></label>
+        <label class="chip"><input type="radio" name="precios" value="Precios desde"><span>Precios "desde"</span></label>
+        <label class="chip"><input type="radio" name="precios" value="Planes con precio fijo"><span>Planes con precio fijo</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="precios_detalle" data-if="precios=Precios desde|Planes con precio fijo">
+      <label class="lbl" for="precios_detalle">Detalle de precios o planes</label>
+      <textarea id="precios_detalle" name="precios_detalle" rows="3" placeholder="Ej: Plan Pyme hasta 25 trabajadores: desde 6 UF/mes"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4 · CLIENTES Y PÚBLICO ========== -->
+<section class="step" data-id="clientes" data-titulo="Clientes y público">
+  <div class="kicker">Paso 4</div>
+  <h2>¿A quién le <em>hablas</em>?</h2>
+  <p class="lead">Definir bien el cliente ideal cambia todo: textos, fotos y hasta los colores.</p>
+
+  <div class="card">
+    <h3><span class="n">01</span> Cliente ideal</h3>
+    <div class="field" data-key="industrias">
+      <span class="lbl">Industrias en las que tienes experiencia o quieres trabajar<span class="req">*</span></span>
+      <div class="chips" id="chipsIndustrias" data-name="industrias" data-required-group></div>
+      <span class="msg-error">Elige al menos una industria.</span>
+    </div>
+    <div class="field" data-key="tamano_cliente">
+      <span class="lbl">Tamaño de empresa que buscas</span>
+      <div class="chips" data-name="tamano_cliente">
+        <label class="chip"><input type="checkbox" name="tamano_cliente" value="Micro y pequeña (1–24)"><span>Micro y pequeña (1–24)</span></label>
+        <label class="chip"><input type="checkbox" name="tamano_cliente" value="Mediana (25–100)"><span>Mediana (25–100)</span></label>
+        <label class="chip"><input type="checkbox" name="tamano_cliente" value="Grande (+100)"><span>Grande (+100)</span></label>
+        <label class="chip"><input type="checkbox" name="tamano_cliente" value="Contratistas y subcontratistas"><span>Contratistas y subcontratistas</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="quien_contrata">
+      <label class="lbl" for="quien_contrata">¿Quién decide la contratación en tus clientes?</label>
+      <input type="text" id="quien_contrata" name="quien_contrata" placeholder="Ej: dueño de pyme, gerente de operaciones, jefe de RR.HH., administrador de contrato">
+    </div>
+    <div class="field" data-key="dolor_cliente">
+      <label class="lbl" for="dolor_cliente">¿Cuál es el problema más común con el que llegan tus clientes?</label>
+      <textarea id="dolor_cliente" name="dolor_cliente" rows="3" placeholder="Ej: no pasan la acreditación del mandante, multa de la Dirección del Trabajo, accidente grave, auditoría ISO encima…"></textarea>
+    </div>
+    <div class="field" data-key="diferenciador">
+      <label class="lbl" for="diferenciador">¿Por qué te eligen a ti y no a otro prevencionista?</label>
+      <textarea id="diferenciador" name="diferenciador" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="n">02</span> Respaldo comercial</h3>
+    <div class="field" data-key="clientes_nombres">
+      <label class="lbl" for="clientes_nombres">Empresas o clientes que te gustaría mostrar</label>
+      <textarea id="clientes_nombres" name="clientes_nombres" rows="3"></textarea>
+    </div>
+    <div class="nota aviso"><span class="ico">!</span><div>Solo publicamos <b>logos o nombres de clientes y empleadores con autorización</b>. Muchas mineras, mandantes y contratistas lo prohíben por contrato o por confidencialidad. Si no hay permiso, hablamos de "empresas del sector minero" sin nombrarlas.</div></div>
+    <div class="field" data-key="autorizacion_logos">
+      <label class="lbl">¿Tienes autorización para mostrarlos?</label>
+      <div class="chips" data-name="autorizacion_logos">
+        <label class="chip"><input type="radio" name="autorizacion_logos" value="Sí, de todos"><span>Sí, de todos</span></label>
+        <label class="chip"><input type="radio" name="autorizacion_logos" value="De algunos"><span>De algunos</span></label>
+        <label class="chip"><input type="radio" name="autorizacion_logos" value="No / no sé"><span>No / no sé</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="testimonios">
+      <label class="lbl" for="testimonios">Testimonios (nombre, cargo, empresa y texto)</label>
+      <span class="ayuda">Si no tienes, te pasamos un mensaje tipo para pedírselos a 2–3 clientes.</span>
+      <textarea id="testimonios" name="testimonios" rows="4"></textarea>
+    </div>
+    <div class="field" data-key="competencia">
+      <label class="lbl" for="competencia">Webs de otros prevencionistas o consultoras que conozcas</label>
+      <textarea id="competencia" name="competencia" rows="2" placeholder="Pega los links y cuéntanos qué te gusta o no de cada una"></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5 · FUNCIONALIDADES ========== -->
+<section class="step" data-id="funciones" data-titulo="Funcionalidades">
+  <div class="kicker">Paso 5</div>
+  <h2>Lo que hará tu web por <em>ti</em></h2>
+  <p class="lead">Una web de prevención no es solo una vitrina: puede captar clientes mientras estás en faena. Las marcadas como <span class="opcion" style="display:inline"><span class="tag" style="margin:0">Recomendado</span></span> son las que más retorno dan en tu rubro.</p>
+  <div class="card">
+    <h3><span class="n">01</span> Funcionalidades</h3>
+    <div class="field" data-key="funcionalidades">
+      <div class="opciones" id="gridFunciones" data-name="funcionalidades"></div>
+    </div>
+    <div class="field" data-key="funcionalidades_otras">
+      <label class="lbl" for="funcionalidades_otras">¿Algo más que te gustaría que hiciera la web?</label>
+      <textarea id="funcionalidades_otras" name="funcionalidades_otras" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="n">02</span> Contenido</h3>
+    <div class="field" data-key="quien_escribe">
+      <label class="lbl">¿Quién redacta los textos?</label>
+      <div class="chips" data-name="quien_escribe">
+        <label class="chip"><input type="radio" name="quien_escribe" value="ISI redacta y yo reviso"><span>ISI redacta y yo reviso</span></label>
+        <label class="chip"><input type="radio" name="quien_escribe" value="Yo envío los textos"><span>Yo envío los textos</span></label>
+        <label class="chip"><input type="radio" name="quien_escribe" value="Mixto"><span>Mixto</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="publicaciones" data-if="funcionalidades=blog">
+      <label class="lbl">¿Con qué frecuencia podrías publicar en el blog?</label>
+      <div class="chips" data-name="publicaciones">
+        <label class="chip"><input type="radio" name="publicaciones" value="Semanal"><span>Semanal</span></label>
+        <label class="chip"><input type="radio" name="publicaciones" value="Quincenal"><span>Quincenal</span></label>
+        <label class="chip"><input type="radio" name="publicaciones" value="Mensual"><span>Mensual</span></label>
+        <label class="chip"><input type="radio" name="publicaciones" value="Que lo gestione ISI"><span>Que lo gestione ISI</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6 · DISEÑO ========== -->
+<section class="step" data-id="diseno" data-titulo="Diseño y estilo">
+  <div class="kicker">Paso 6</div>
+  <h2>Diseño y <em>estilo</em></h2>
+  <p class="lead">Cómo quieres que se sienta tu marca.</p>
+  <div class="card">
+    <h3><span class="n">01</span> Estilo visual</h3>
+    <div class="field" data-key="estilo">
+      <span class="lbl">Estilo que te representa (puedes marcar más de uno)</span>
+      <div class="chips" data-name="estilo">
+        <label class="chip"><input type="checkbox" name="estilo" value="Corporativo sobrio"><span>Corporativo sobrio</span></label>
+        <label class="chip"><input type="checkbox" name="estilo" value="Industrial / minero"><span>Industrial / minero</span></label>
+        <label class="chip"><input type="checkbox" name="estilo" value="Moderno / tecnológico"><span>Moderno / tecnológico</span></label>
+        <label class="chip"><input type="checkbox" name="estilo" value="Cercano / humano"><span>Cercano / humano</span></label>
+        <label class="chip"><input type="checkbox" name="estilo" value="Minimalista"><span>Minimalista</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="colores">
+      <span class="lbl">Colores</span>
+      <span class="ayuda">En prevención funcionan bien el azul (confianza), el naranjo o amarillo de seguridad (acción) y el verde (cumplimiento). Si tienes colores de marca, indícalos.</span>
+      <div class="chips" data-name="colores">
+        <label class="chip"><input type="checkbox" name="colores" value="Azul confianza"><span>Azul confianza</span></label>
+        <label class="chip"><input type="checkbox" name="colores" value="Naranjo / amarillo seguridad"><span>Naranjo / amarillo seguridad</span></label>
+        <label class="chip"><input type="checkbox" name="colores" value="Verde cumplimiento"><span>Verde cumplimiento</span></label>
+        <label class="chip"><input type="checkbox" name="colores" value="Gris / negro industrial"><span>Gris / negro industrial</span></label>
+        <label class="chip"><input type="checkbox" name="colores" value="Que ISI proponga"><span>Que ISI proponga</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="colores_detalle">
+      <label class="lbl" for="colores_detalle">Colores específicos o cosas a evitar</label>
+      <input type="text" id="colores_detalle" name="colores_detalle" placeholder="Ej: #003B71 y naranjo; nada de rojo">
+    </div>
+    <div class="field" data-key="referencias">
+      <label class="lbl" for="referencias">Webs que te gusten (de cualquier rubro) y por qué</label>
+      <textarea id="referencias" name="referencias" rows="3"></textarea>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="n">02</span> Fotografía</h3>
+    <div class="field" data-key="fotos">
+      <span class="lbl">¿Con qué fotos contamos?</span>
+      <div class="chips" data-name="fotos">
+        <label class="chip"><input type="checkbox" name="fotos" value="Fotos profesionales mías"><span>Fotos profesionales mías</span></label>
+        <label class="chip"><input type="checkbox" name="fotos" value="Fotos en faena / capacitaciones"><span>Fotos en faena / capacitaciones</span></label>
+        <label class="chip"><input type="checkbox" name="fotos" value="Necesito sesión de fotos"><span>Necesito sesión de fotos</span></label>
+        <label class="chip"><input type="checkbox" name="fotos" value="Usar banco de imágenes"><span>Usar banco de imágenes</span></label>
+      </div>
+    </div>
+    <div class="nota aviso"><span class="ico">!</span><div>Revisa que cada foto muestre <b>EPP completo y prácticas correctas</b> (casco con barbiquejo, arnés bien puesto, lentes, zapatos de seguridad). En la web de un prevencionista, una foto con una mala práctica le resta credibilidad. Y si aparecen trabajadores, que haya <b>autorización de uso de imagen</b>.</div></div>
+  </div>
+</section>
+
+<!-- ========== 7 · DOMINIO Y REDES ========== -->
+<section class="step" data-id="dominio" data-titulo="Dominio, correo y redes">
+  <div class="kicker">Paso 7</div>
+  <h2>Dominio, correo y <em>redes</em></h2>
+  <p class="lead">La parte técnica. Si no entiendes algo, márcalo como "no sé" y lo resolvemos nosotros.</p>
+  <div class="card">
+    <h3><span class="n">01</span> Dominio y correo</h3>
+    <div class="field" data-key="tiene_dominio">
+      <label class="lbl">¿Tienes dominio (ej: pabloorellana.cl)?</label>
+      <div class="chips" data-name="tiene_dominio">
+        <label class="chip"><input type="radio" name="tiene_dominio" value="Sí"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="tiene_dominio" value="No, quiero que ISI lo gestione"><span>No, que ISI lo gestione</span></label>
+        <label class="chip"><input type="radio" name="tiene_dominio" value="No sé"><span>No sé</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="dominio" data-if="tiene_dominio=Sí">
+      <label class="lbl" for="dominio">¿Cuál es y dónde está registrado?</label>
+      <input type="text" id="dominio" name="dominio" placeholder="Ej: miconsultora.cl en NIC Chile">
+    </div>
+    <div class="field" data-key="dominio_ideas" data-if="tiene_dominio=No, quiero que ISI lo gestione|No sé">
+      <label class="lbl" for="dominio_ideas">Ideas de nombre para el dominio</label>
+      <input type="text" id="dominio_ideas" name="dominio_ideas" placeholder="Ej: pabloorellana.cl, orellanaprevencion.cl">
+    </div>
+    <div class="field" data-key="correo_corporativo">
+      <label class="lbl">¿Quieres correo con tu dominio (ej: contacto@tudominio.cl)?</label>
+      <div class="chips" data-name="correo_corporativo">
+        <label class="chip"><input type="radio" name="correo_corporativo" value="Sí"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="correo_corporativo" value="Ya tengo"><span>Ya tengo</span></label>
+        <label class="chip"><input type="radio" name="correo_corporativo" value="No por ahora"><span>No por ahora</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h3><span class="n">02</span> Redes y presencia</h3>
+    <div class="grid2">
+      <div class="field" data-key="linkedin">
+        <label class="lbl" for="linkedin">LinkedIn<span class="precarga">◆ LinkedIn</span></label>
+        <input type="url" id="linkedin" name="linkedin" value="https://www.linkedin.com/in/pablo-francisco-andres-orellana-n%C3%BA%C3%B1ez-460a3597/">
+      </div>
+      <div class="field" data-key="instagram">
+        <label class="lbl" for="instagram">Instagram</label>
+        <input type="text" id="instagram" name="instagram" placeholder="@usuario">
+      </div>
+      <div class="field" data-key="facebook">
+        <label class="lbl" for="facebook">Facebook</label>
+        <input type="text" id="facebook" name="facebook">
+      </div>
+      <div class="field" data-key="youtube">
+        <label class="lbl" for="youtube">YouTube / TikTok</label>
+        <input type="text" id="youtube" name="youtube">
+      </div>
+    </div>
+    <div class="field" data-key="google_business">
+      <label class="lbl">¿Tienes ficha en Google Maps (Google Business)?</label>
+      <div class="chips" data-name="google_business">
+        <label class="chip"><input type="radio" name="google_business" value="Sí"><span>Sí</span></label>
+        <label class="chip"><input type="radio" name="google_business" value="No, quiero crearla"><span>No, quiero crearla</span></label>
+        <label class="chip"><input type="radio" name="google_business" value="No me interesa"><span>No me interesa</span></label>
+      </div>
+    </div>
+    <div class="field" data-key="marketing">
+      <label class="lbl">¿Te interesa que ISI gestione tus redes o campañas después del lanzamiento?</label>
+      <div class="chips" data-name="marketing">
+        <label class="chip"><input type="radio" name="marketing" value="Sí, cuéntenme"><span>Sí, cuéntenme</span></label>
+        <label class="chip"><input type="radio" name="marketing" value="Más adelante"><span>Más adelante</span></label>
+        <label class="chip"><input type="radio" name="marketing" value="No"><span>No</span></label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8 · ARCHIVOS ========== -->
+<section class="step" data-id="archivos" data-titulo="Archivos">
+  <div class="kicker">Paso 8</div>
+  <h2>Sube tus <em>archivos</em></h2>
+  <p class="lead">Imágenes (JPG, PNG, WEBP, SVG) o PDF, hasta <span id="maxMbTxt">10</span> MB cada uno. Si pesan más o no los tienes a mano, sáltate este paso y nos los mandas por WhatsApp.</p>
+  <div class="card">
+    <div class="field" data-key="arch_foto">
+      <span class="lbl">Foto de perfil profesional</span>
+      <label class="drop" data-cat="foto_perfil"><input type="file" accept="image/*" multiple><span class="t">📷 Toca para elegir o arrastra aquí</span><br><span class="d">Idealmente de frente, buena luz, fondo neutro o en faena con EPP</span></label>
+      <ul class="lista-arch" data-lista="foto_perfil"></ul>
+    </div>
+    <div class="field" data-key="arch_logo">
+      <span class="lbl">Logo</span>
+      <label class="drop" data-cat="logo"><input type="file" accept="image/*,.pdf,.svg" multiple><span class="t">🎨 Logo en la mejor calidad que tengas</span><br><span class="d">SVG, PNG con fondo transparente o PDF</span></label>
+      <ul class="lista-arch" data-lista="logo"></ul>
+    </div>
+    <div class="field" data-key="arch_certificados">
+      <span class="lbl">Títulos, registro SEREMI y certificaciones</span>
+      <label class="drop" data-cat="certificados"><input type="file" accept="image/*,.pdf" multiple><span class="t">📄 Certificados en PDF o foto</span><br><span class="d">Solo los usamos para verificar y citar correctamente; no se publican sin tu permiso</span></label>
+      <ul class="lista-arch" data-lista="certificados"></ul>
+    </div>
+    <div class="field" data-key="arch_fotos_trabajo">
+      <span class="lbl">Fotos de faenas, capacitaciones o trabajos</span>
+      <label class="drop" data-cat="fotos_trabajo"><input type="file" accept="image/*" multiple><span class="t">🦺 Fotos de tu trabajo</span><br><span class="d">Recuerda: EPP completo y autorización de las personas que aparecen</span></label>
+      <ul class="lista-arch" data-lista="fotos_trabajo"></ul>
+    </div>
+    <div class="field" data-key="arch_otros">
+      <span class="lbl">CV, presentación de servicios, logos de clientes autorizados u otros</span>
+      <label class="drop" data-cat="otros"><input type="file" accept="image/*,.pdf" multiple><span class="t">📎 Otros archivos</span></label>
+      <ul class="lista-arch" data-lista="otros"></ul>
+    </div>
+    <div class="nota"><span class="ico">i</span><div>Los archivos <b>no se guardan en el borrador</b>: si cierras la página antes de enviar, tendrás que volver a adjuntarlos.</div></div>
+  </div>
+</section>
+
+<!-- ========== 9 · PLAZOS Y CIERRE ========== -->
+<section class="step" data-id="cierre" data-titulo="Plazos y cierre">
+  <div class="kicker">Paso 9</div>
+  <h2>Plazos y <em>cierre</em></h2>
+  <p class="lead">Último paso antes de revisar.</p>
+  <div class="card">
+    <div class="grid2">
+      <div class="field" data-key="fecha_lanzamiento">
+        <label class="lbl" for="fecha_lanzamiento">¿Para cuándo te gustaría tenerla?</label>
+        <input type="date" id="fecha_lanzamiento" name="fecha_lanzamiento">
+      </div>
+      <div class="field" data-key="urgencia">
+        <label class="lbl" for="urgencia">¿Hay algo que dependa de esa fecha?</label>
+        <input type="text" id="urgencia" name="urgencia" placeholder="Ej: licitación, feria, inicio de actividades">
+      </div>
+    </div>
+    <div class="field" data-key="presupuesto">
+      <label class="lbl" for="presupuesto">Presupuesto referencial (opcional)</label>
+      <select id="presupuesto" name="presupuesto">
+        <option value="">Prefiero no indicarlo</option>
+        <option>Menos de $300.000</option>
+        <option>$300.000 – $600.000</option>
+        <option>$600.000 – $1.000.000</option>
+        <option>Más de $1.000.000</option>
+        <option>Necesito una propuesta para decidir</option>
+      </select>
+    </div>
+    <div class="field" data-key="reunion">
+      <label class="lbl" for="reunion">¿Cuándo te acomoda una reunión para revisar el brief?</label>
+      <input type="text" id="reunion" name="reunion" placeholder="Ej: martes o jueves después de las 18:00, por Meet">
+    </div>
+    <div class="field" data-key="comentarios">
+      <label class="lbl" for="comentarios">Comentarios finales</label>
+      <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+    </div>
+  </div>
+  <div class="card">
+    <div class="field" data-key="consentimiento">
+      <div class="chips" data-name="consentimiento" data-required-group>
+        <label class="chip"><input type="checkbox" name="consentimiento" value="Acepto"><span>Autorizo a ISI LABS SpA a usar esta información solo para desarrollar mi sitio web.<span class="req" style="color:var(--magenta)">*</span></span></label>
+      </div>
+      <span class="msg-error">Necesitamos tu autorización para continuar.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10 · REVISIÓN ========== -->
+<section class="step" data-id="revision" data-titulo="Revisión">
+  <div class="kicker no-print">Revisión final</div>
+  <h2>Revisa tus <em>respuestas</em></h2>
+  <p class="lead no-print">Si todo está bien, envía. Puedes volver a cualquier sección con "Editar".</p>
+  <div class="card" id="resumen"></div>
+  <div class="no-print" style="text-align:center">
+    <button type="button" class="btn btn-sec" id="btnImprimir">⬇ Guardar copia en PDF</button>
+  </div>
+</section>
+
+</form>
+<footer class="firma">ISI LABS SpA · Complejo por dentro. Ísi por fuera.</footer>
+</div>
+</main>
+
+<!-- =================== NAVEGACIÓN =================== -->
+<nav class="pie">
+  <div class="wrap">
+    <div class="pie-in">
+      <button type="button" class="btn btn-sec" id="btnAtras">← Atrás</button>
+      <span class="espacio"></span>
+      <button type="button" class="btn btn-pri" id="btnSig">Comenzar →</button>
+    </div>
+  </div>
+</nav>
+
+<!-- =================== OVERLAYS =================== -->
+<div class="overlay" id="ovEnvio" role="dialog" aria-live="polite">
+  <div class="box">
+    <div class="spinner"></div>
+    <h2>Enviando…</h2>
+    <p>No cierres esta página.</p>
+    <div class="det-envio" id="detEnvio"></div>
+  </div>
+</div>
+
+<div class="overlay" id="ovOk" role="dialog">
+  <div class="box">
+    <div class="check">✓</div>
+    <h2>¡Listo, <em id="okNombre">Pablo</em>!</h2>
+    <p>Recibimos tu brief. Te contactaremos para agendar la reunión de revisión.</p>
+    <div class="folio" id="okFolio">—</div>
+    <p style="font-size:14px">Guarda este número de folio como referencia.</p>
+    <div class="acciones-ok">
+      <button type="button" class="btn btn-sec" id="btnCopiaOk">⬇ Descargar copia</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="ovOffline" role="dialog">
+  <div class="box">
+    <div class="check" style="background:var(--aviso);color:var(--noche)">!</div>
+    <h2>Casi listo</h2>
+    <p id="offlineTxt">Descargamos un archivo con tus respuestas. Envíalo por correo a ISI LABS junto con tus archivos adjuntos.</p>
+    <div class="acciones-ok">
+      <a class="btn btn-menta" id="btnMailto" href="#">✉ Abrir correo</a>
+      <button type="button" class="btn btn-sec" id="btnCerrarOffline">Volver</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   CONFIGURACIÓN
+   ========================================================= */
+const CONFIG = {
+  // URL del Web App de Apps Script (termina en /exec). Si queda vacía,
+  // el formulario funciona en modo sin servidor: descarga las respuestas
+  // y abre un correo para enviarlas.
+  APPS_SCRIPT_URL: '',
+  CLIENTE: 'Pablo Orellana',
+  CLIENTE_ID: 'pablo-orellana',
+  CORREO_ISI: 'sebastian@isilabs.cl',
+  LOGO_URL: '',                 // opcional: URL del logo oficial (reemplaza el SVG)
+  MAX_FILE_MB: 10,
+  MAX_TOTAL_MB: 80,
+  STORAGE_KEY: 'isi_brief_pablo_orellana_v1',
+  REINTENTOS: 3
+};
+
+/* =========================================================
+   CATÁLOGOS (servicios, industrias, funcionalidades)
+   ========================================================= */
+const SERVICIOS = [
+  ['asesoria_externa','Asesoría externa en prevención','Experto a honorarios o jornada parcial para empresas sin departamento propio. Desde 100 trabajadores la ley exige departamento de prevención (Ley 16.744, art. 66).'],
+  ['ds44','Implementación DS 44 (gestión preventiva)','Política SST, matriz MIPER, mapa de riesgos y programa de trabajo preventivo. Reemplazó al DS 40 y DS 54 desde el 1 de febrero de 2025.'],
+  ['riohs','Reglamento Interno (RIOHS)','Obligatorio desde 10 trabajadores (Código del Trabajo, art. 153). Debe incorporar el protocolo Ley Karin.'],
+  ['karin','Ley Karin (21.643)','Protocolo de prevención del acoso sexual, laboral y la violencia en el trabajo, procedimiento de investigación y capacitación.'],
+  ['cphs','Comité Paritario (CPHS)','Constitución, elecciones y asesoría. Obligatorio en empresas o faenas con más de 25 trabajadores.'],
+  ['contratistas','Gestión de contratistas y subcontratistas','Ley 20.123 y DS 76: reglamento especial de empresas contratistas, sistema de gestión SST de la faena y control documental.'],
+  ['acreditacion','Acreditación ante mandantes','Carpetas de arranque y documentación SST que exigen mineras, constructoras y grandes mandantes para ingresar a faena.'],
+  ['mineria','Seguridad minera (DS 132)','Reglamento de Seguridad Minera, requerimientos Sernageomin, minería subterránea y túneles.'],
+  ['protocolos','Protocolos MINSAL de vigilancia','PREXOR (ruido), PLANESI (sílice), TMERT, manejo manual de carga, radiación UV e hipobaria.'],
+  ['psicosocial','Riesgos psicosociales (CEAL-SM/SUSESO)','Aplicación del protocolo y apoyo al comité de aplicación. Obligatorio desde 10 trabajadores.'],
+  ['auditoria','Diagnóstico de cumplimiento legal','Revisión DS 594, DS 44 y normativa sectorial, con informe de brechas y plan de acción.'],
+  ['investigacion','Investigación de accidentes','Árbol de causas, medidas correctivas y gestión de DIAT/DIEP con el organismo administrador.'],
+  ['emergencia','Planes de emergencia y simulacros','Plan de emergencia y evacuación, brigadas, simulacros y señalética.'],
+  ['iso','Sistemas ISO 45001 / 14001 / 9001','Implementación, integración y preparación para auditoría de certificación.'],
+  ['ambiente','Gestión ambiental y residuos','Residuos peligrosos (DS 148), declaraciones en Ventanilla Única RETC y cumplimiento ambiental.'],
+  ['capacitacion','Capacitaciones y charlas','Inducción, trabajo en altura, espacios confinados, uso de extintores, bloqueo LOTO, EPP, manejo defensivo.'],
+  ['accidentabilidad','Reducción de accidentabilidad y cotización','Análisis de siniestralidad (DS 67) para bajar la cotización adicional que paga la empresa.'],
+  ['epp','Selección y control de EPP','EPP certificado (DS 18), matrices de entrega y registros.']
+];
+
+const INDUSTRIAS = ['Minería subterránea y túneles','Minería a rajo abierto','Construcción','Industria y manufactura','Transporte y logística','Energía','Agroindustria','Forestal','Pesca y acuicultura','Retail y comercio','Servicios y oficinas','Salud','Educación','Sector público'];
+const INDUSTRIAS_PRECARGA = ['Minería subterránea y túneles']; // Normet: equipos para minería subterránea y túneles
+
+const FUNCIONALIDADES = [
+  ['whatsapp','Botón de WhatsApp flotante','Contacto inmediato desde el celular, que es desde donde te buscan.',true],
+  ['cotizacion','Formulario de cotización inteligente','Pide rubro, N° de trabajadores y servicio: llegas a la primera llamada con la propuesta casi lista.',true],
+  ['autodiagnostico','Autodiagnóstico "¿Tu empresa cumple?"','El visitante ingresa N° de trabajadores y rubro, y ve qué obligaciones le aplican (RIOHS, CPHS, CEAL-SM, departamento de prevención). Genera clientes calificados.',true],
+  ['descargables','Plantillas descargables a cambio del correo','Checklist DS 594, formato de charla de 5 minutos, plantilla MIPER. Construye tu base de contactos.',true],
+  ['privacidad','Política de privacidad y aviso de cookies','Necesaria al captar datos de contacto; la nueva Ley de Datos Personales (21.719) sube las exigencias.',true],
+  ['calculadora','Calculadora de costo de accidentabilidad','Estima cuánto paga de más una empresa en cotización adicional (DS 67) y días perdidos.',false],
+  ['blog','Blog de actualización normativa','DS 44, Ley Karin, protocolos MINSAL. Mejora tu posicionamiento en Google.',false],
+  ['agenda','Agenda online de reuniones','Reserva de un diagnóstico gratuito de 30 min conectado a tu Google Calendar.',false],
+  ['certificados','Verificación de certificados por QR','Cada certificado de capacitación lleva un QR que se valida en tu web. Muy valorado por mandantes.',false],
+  ['portal','Portal privado de clientes','Documentos, informes y registros por empresa. Ideal como fase 2.',false],
+  ['galeria','Galería de faenas y capacitaciones','Prueba visual de tu trabajo en terreno.',false],
+  ['testimonios','Testimonios y logos de clientes','Prueba social, siempre con autorización.',false],
+  ['faq','Preguntas frecuentes','Responde dudas típicas: ¿necesito comité paritario?, ¿cada cuánto se actualiza el RIOHS?',false],
+  ['google','Ficha Google Business + SEO local','Aparecer cuando buscan "prevencionista de riesgos en [tu ciudad]".',false],
+  ['ingles','Versión en inglés','Útil si trabajas con multinacionales o proveedores extranjeros.',false]
+];
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+const $ = (s, el=document) => el.querySelector(s);
+const $$ = (s, el=document) => [...el.querySelectorAll(s)];
+const form = $('#brief');
+const pasos = $$('.step');
+let pasoActual = 0;
+const archivos = {};          // { categoria: [File, ...] }
+let timerGuardado = null;
+
+/* =========================================================
+   RENDER DE CATÁLOGOS
+   ========================================================= */
+function escaparHtml(t){ return String(t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function renderCatalogos(){
+  $('#gridServicios').innerHTML = SERVICIOS.map(([id,t,d]) =>
+    `<label class="opcion"><input type="checkbox" name="servicios" value="${id}" data-texto="${escaparHtml(t)}"><span class="caja"><span class="t">${escaparHtml(t)}</span><span class="d">${escaparHtml(d)}</span></span></label>`).join('');
+
+  $('#chipsIndustrias').innerHTML = INDUSTRIAS.map(i =>
+    `<label class="chip"><input type="checkbox" name="industrias" value="${escaparHtml(i)}" ${INDUSTRIAS_PRECARGA.includes(i)?'checked':''}><span>${escaparHtml(i)}</span></label>`).join('');
+
+  $('#gridFunciones').innerHTML = FUNCIONALIDADES.map(([id,t,d,rec]) =>
+    `<label class="opcion"><input type="checkbox" name="funcionalidades" value="${id}" data-texto="${escaparHtml(t)}" ${rec?'checked':''}><span class="caja"><span class="t">${escaparHtml(t)}${rec?'<span class="tag">Recomendado</span>':''}</span><span class="d">${escaparHtml(d)}</span></span></label>`).join('');
+
+  // Lista de pasos en la bienvenida
+  $('#listaPasos').innerHTML = pasos.slice(1, -1).map((p,i) =>
+    `<li><i>${String(i+1).padStart(2,'0')}</i>${escaparHtml(p.dataset.titulo)}</li>`).join('');
+
+  $('#maxMbTxt').textContent = CONFIG.MAX_FILE_MB;
+  $('#chipCliente').textContent = CONFIG.CLIENTE;
+
+  if (CONFIG.LOGO_URL) {
+    const img = document.createElement('img');
+    img.src = CONFIG.LOGO_URL; img.alt = 'ISI LABS'; img.style.height = '40px';
+    $('#logoSvg').replaceWith(img);
+  }
+}
+
+/* =========================================================
+   SERIALIZACIÓN / BORRADOR
+   ========================================================= */
+function leerDatos(){
+  const datos = {};
+  for (const el of form.elements) {
+    if (!el.name || el.type === 'file') continue;
+    if (el.type === 'checkbox') {
+      if (!datos[el.name]) datos[el.name] = [];
+      if (el.checked) datos[el.name].push(el.value);
+    } else if (el.type === 'radio') {
+      if (!(el.name in datos)) datos[el.name] = '';
+      if (el.checked) datos[el.name] = el.value;
+    } else {
+      datos[el.name] = el.value.trim();
+    }
+  }
+  return datos;
+}
+
+function escribirDatos(datos){
+  for (const el of form.elements) {
+    if (!el.name || el.type === 'file' || !(el.name in datos)) continue;
+    const v = datos[el.name];
+    if (el.type === 'checkbox') el.checked = Array.isArray(v) && v.includes(el.value);
+    else if (el.type === 'radio') el.checked = (v === el.value);
+    else el.value = v;
+  }
+}
+
+function guardarBorrador(){
+  try {
+    localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify({ datos: leerDatos(), paso: pasoActual, t: Date.now() }));
+    const g = $('#guardado'); g.classList.add('on');
+    clearTimeout(timerGuardado); timerGuardado = setTimeout(() => g.classList.remove('on'), 1600);
+  } catch (e) { /* Safari privado u otro bloqueo: seguimos sin borrador */ }
+}
+
+function cargarBorrador(){
+  try {
+    const raw = localStorage.getItem(CONFIG.STORAGE_KEY);
+    if (!raw) return 0;
+    const b = JSON.parse(raw);
+    if (b && b.datos) escribirDatos(b.datos);
+    return Math.min(b.paso || 0, pasos.length - 1);
+  } catch (e) { return 0; }
+}
+
+function borrarBorrador(){ try { localStorage.removeItem(CONFIG.STORAGE_KEY); } catch(e){} }
+
+/* =========================================================
+   CAMPOS CONDICIONALES  (data-if="campo=valor1|valor2")
+   ========================================================= */
+function aplicarCondiciones(){
+  const datos = leerDatos();
+  $$('[data-if]').forEach(el => {
+    const [campo, vals] = el.dataset.if.split('=');
+    const opciones = vals.split('|');
+    const actual = datos[campo];
+    const visible = Array.isArray(actual) ? actual.some(v => opciones.includes(v)) : opciones.includes(actual);
+    el.style.display = visible ? '' : 'none';
+    el.dataset.oculto = visible ? '' : '1';
+  });
+}
+
+/* =========================================================
+   VALIDACIÓN
+   ========================================================= */
+function validarPaso(idx){
+  const paso = pasos[idx];
+  let ok = true, primero = null;
+  $$('.field', paso).forEach(f => {
+    if (f.dataset.oculto === '1' || f.closest('[data-oculto="1"]')) return;
+    let valido = true;
+    const grupo = $('[data-required-group]', f);
+    if (grupo) {
+      valido = $$('input', grupo).some(i => i.checked);
+    } else {
+      $$('input[required],select[required],textarea[required]', f).forEach(i => {
+        if (!i.value.trim()) valido = false;
+        else if (i.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(i.value.trim())) valido = false;
+      });
+    }
+    f.classList.toggle('invalido', !valido);
+    if (!valido) { ok = false; primero = primero || f; }
+  });
+  if (primero) {
+    primero.scrollIntoView({ behavior:'smooth', block:'center' });
+    toast('Revisa los campos marcados');
+  }
+  return ok;
+}
+
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
+function irA(idx, validar=true){
+  if (validar && idx > pasoActual) {
+    for (let i = pasoActual; i < idx; i++) {
+      if (!validarPaso(i)) { mostrarPaso(i); return; }
+    }
+  }
+  mostrarPaso(idx);
+}
+
+function mostrarPaso(idx){
+  pasoActual = Math.max(0, Math.min(idx, pasos.length - 1));
+  pasos.forEach((p,i) => p.classList.toggle('activo', i === pasoActual));
+  const total = pasos.length - 1;
+  $('#progBar').style.width = (pasoActual / total * 100) + '%';
+  const p = pasos[pasoActual];
+  $('#progTxt').textContent = pasoActual === 0 ? 'Inicio'
+    : pasoActual === total ? 'Revisión final'
+    : `Paso ${pasoActual} de ${total - 1} · ${p.dataset.titulo}`;
+  $('#btnAtras').style.visibility = pasoActual === 0 ? 'hidden' : 'visible';
+  const sig = $('#btnSig');
+  sig.textContent = pasoActual === 0 ? 'Comenzar →' : pasoActual === total ? 'Enviar brief ✓' : pasoActual === total - 1 ? 'Revisar →' : 'Siguiente →';
+  if (pasoActual === total) renderResumen();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  guardarBorrador();
+}
+
+/* =========================================================
+   RESUMEN
+   ========================================================= */
+function textoValor(f, datos){
+  const key = f.dataset.key;
+  if (key.startsWith('arch_')) {
+    const cat = $('.drop', f)?.dataset.cat;
+    const lista = archivos[cat] || [];
+    return lista.length ? lista.map(a => a.name).join('\n') : '';
+  }
+  const v = datos[key];
+  if (Array.isArray(v)) {
+    return v.map(val => {
+      const inp = form.querySelector(`input[name="${key}"][value="${CSS.escape(val)}"]`);
+      return '• ' + (inp?.dataset.texto || val);
+    }).join('\n');
+  }
+  return v || '';
+}
+
+function construirResumen(){
+  const datos = leerDatos();
+  const secciones = [];
+  pasos.slice(1, -1).forEach((p, i) => {
+    const filas = [];
+    $$('.field', p).forEach(f => {
+      if (!f.dataset.key || f.dataset.oculto === '1') return;
+      const lblEl = $('.lbl', f);
+      let pregunta = lblEl ? lblEl.cloneNode(true) : null;
+      if (pregunta) { $$('.req,.precarga', pregunta).forEach(x => x.remove()); pregunta = pregunta.textContent.trim(); }
+      if (f.dataset.key === 'consentimiento') pregunta = 'Autorización de uso de datos';
+      filas.push({ seccion: p.dataset.titulo, pregunta: pregunta || f.dataset.key, respuesta: textoValor(f, datos), key: f.dataset.key });
+    });
+    secciones.push({ idx: i + 1, titulo: p.dataset.titulo, filas });
+  });
+  return secciones;
+}
+
+function renderResumen(){
+  const secs = construirResumen();
+  $('#resumen').innerHTML = secs.map(s => `
+    <div class="resumen-sec">
+      <h4>${escaparHtml(s.titulo)} <button type="button" class="no-print" data-ir="${s.idx}">Editar</button></h4>
+      <dl>${s.filas.map(f => `<dt>${escaparHtml(f.pregunta)}</dt><dd class="${f.respuesta?'':'vacio'}">${f.respuesta ? escaparHtml(f.respuesta) : 'Sin respuesta'}</dd>`).join('')}</dl>
+    </div>`).join('');
+  $$('[data-ir]', $('#resumen')).forEach(b => b.onclick = () => mostrarPaso(+b.dataset.ir));
+}
+
+function resumenTextoPlano(){
+  return construirResumen().map(s =>
+    `== ${s.titulo.toUpperCase()} ==\n` + s.filas.map(f => `${f.pregunta}:\n${f.respuesta || '—'}`).join('\n\n')
+  ).join('\n\n\n');
+}
+
+/* =========================================================
+   ARCHIVOS
+   ========================================================= */
+function totalMB(){
+  return Object.values(archivos).flat().reduce((s,f) => s + f.size, 0) / 1048576;
+}
+
+function agregarArchivos(cat, lista){
+  archivos[cat] = archivos[cat] || [];
+  for (const f of lista) {
+    const mb = f.size / 1048576;
+    const tipoOk = /^image\//.test(f.type) || f.type === 'application/pdf' || /\.(svg|pdf)$/i.test(f.name);
+    if (!tipoOk) { toast(`"${f.name}" no es imagen ni PDF`); continue; }
+    if (mb > CONFIG.MAX_FILE_MB) { toast(`"${f.name}" supera ${CONFIG.MAX_FILE_MB} MB`); continue; }
+    if (totalMB() + mb > CONFIG.MAX_TOTAL_MB) { toast(`Superas el máximo total de ${CONFIG.MAX_TOTAL_MB} MB`); break; }
+    if (archivos[cat].some(a => a.name === f.name && a.size === f.size)) continue;
+    archivos[cat].push(f);
+  }
+  renderArchivos(cat);
+}
+
+function renderArchivos(cat){
+  const ul = $(`[data-lista="${cat}"]`);
+  ul.innerHTML = (archivos[cat] || []).map((f,i) =>
+    `<li><span>${escaparHtml(f.name)}</span><small>${(f.size/1048576).toFixed(1)} MB</small><button type="button" aria-label="Quitar" data-cat="${cat}" data-i="${i}">×</button></li>`).join('');
+  $$('button', ul).forEach(b => b.onclick = () => { archivos[b.dataset.cat].splice(+b.dataset.i, 1); renderArchivos(b.dataset.cat); });
+}
+
+function initArchivos(){
+  $$('.drop').forEach(d => {
+    const cat = d.dataset.cat, inp = $('input', d);
+    inp.addEventListener('change', () => { agregarArchivos(cat, inp.files); inp.value = ''; });
+    ['dragenter','dragover'].forEach(ev => d.addEventListener(ev, e => { e.preventDefault(); d.classList.add('sobre'); }));
+    ['dragleave','drop'].forEach(ev => d.addEventListener(ev, e => { e.preventDefault(); d.classList.remove('sobre'); }));
+    d.addEventListener('drop', e => agregarArchivos(cat, e.dataTransfer.files));
+  });
+}
+
+function aBase64(file){
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(String(r.result).split(',')[1]);
+    r.onerror = () => rej(new Error('No se pudo leer ' + file.name));
+    r.readAsDataURL(file);
+  });
+}
+
+/* =========================================================
+   ENVÍO
+   ========================================================= */
+function nuevoId(){
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+}
+
+async function postConReintento(payload){
+  let ultimoError;
+  for (let intento = 1; intento <= CONFIG.REINTENTOS; intento++) {
+    try {
+      // text/plain evita el preflight CORS en Apps Script
+      const r = await fetch(CONFIG.APPS_SCRIPT_URL, { method:'POST', body: JSON.stringify(payload) });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'Error del servidor');
+      return j;
+    } catch (e) {
+      ultimoError = e;
+      if (intento < CONFIG.REINTENTOS) await new Promise(r => setTimeout(r, 1200 * intento));
+    }
+  }
+  throw ultimoError;
+}
+
+async function enviar(){
+  if (!validarPaso(pasos.length - 2)) { mostrarPaso(pasos.length - 2); return; }
+  const datos = leerDatos();
+
+  if (!CONFIG.APPS_SCRIPT_URL) { envioSinServidor(datos); return; }
+
+  const ov = $('#ovEnvio'), det = $('#detEnvio');
+  ov.classList.add('on'); $('#btnSig').disabled = true;
+  const submissionId = nuevoId();
+  const subidos = [];
+  try {
+    const lista = Object.entries(archivos).flatMap(([cat, fs]) => fs.map(f => [cat, f]));
+    for (let i = 0; i < lista.length; i++) {
+      const [cat, f] = lista[i];
+      det.textContent = `Subiendo archivo ${i+1} de ${lista.length}: ${f.name}`;
+      const r = await postConReintento({
+        action:'upload', submissionId, cliente: CONFIG.CLIENTE, categoria: cat,
+        nombre: f.name, mimeType: f.type || 'application/octet-stream', data: await aBase64(f)
+      });
+      subidos.push({ categoria: cat, nombre: f.name, url: r.url });
+    }
+    det.textContent = 'Registrando respuestas…';
+    const r = await postConReintento({
+      action:'submit', submissionId, cliente: CONFIG.CLIENTE, clienteId: CONFIG.CLIENTE_ID,
+      enviadoEn: new Date().toISOString(), userAgent: navigator.userAgent,
+      respuestas: datos, resumen: construirResumen().flatMap(s => s.filas.map(({seccion,pregunta,respuesta}) => ({seccion,pregunta,respuesta}))),
+      archivos: subidos
+    });
+    ov.classList.remove('on');
+    $('#okFolio').textContent = r.folio || submissionId.slice(0,8).toUpperCase();
+    $('#okNombre').textContent = (datos.nombre_publico || datos.nombre || 'Pablo').split(' ')[0];
+    $('#ovOk').classList.add('on');
+    borrarBorrador();
+  } catch (e) {
+    ov.classList.remove('on');
+    toast('No pudimos enviar: ' + e.message + '. Tus respuestas siguen guardadas.');
+    envioSinServidor(datos, true);
+  } finally {
+    $('#btnSig').disabled = false;
+  }
+}
+
+function descargarCopia(){
+  const texto = `BRIEF SITIO WEB · ${CONFIG.CLIENTE}\nISI LABS SpA · ${new Date().toLocaleString('es-CL')}\n\n` + resumenTextoPlano();
+  const blob = new Blob([texto], { type:'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `brief-web-${CONFIG.CLIENTE_ID}-${new Date().toISOString().slice(0,10)}.txt`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+function envioSinServidor(datos, porError=false){
+  descargarCopia();
+  const asunto = `Brief sitio web · ${datos.nombre || CONFIG.CLIENTE}`;
+  const cuerpo = `Hola equipo ISI LABS,\n\nAdjunto el archivo con mis respuestas del brief (se descargó en mi dispositivo) y mis archivos.\n\nSaludos,\n${datos.nombre || ''}`;
+  $('#btnMailto').href = `mailto:${CONFIG.CORREO_ISI}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  $('#offlineTxt').textContent = (porError ? 'Hubo un problema de conexión. ' : '') +
+    `Descargamos un archivo con tus respuestas. Envíalo a ${CONFIG.CORREO_ISI} junto con tus archivos (foto, logo, certificados).`;
+  $('#ovOffline').classList.add('on');
+}
+
+/* =========================================================
+   UTILIDADES UI
+   ========================================================= */
+let timerToast;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(timerToast); timerToast = setTimeout(() => t.classList.remove('on'), 3200);
+}
+
+/* =========================================================
+   INICIO
+   ========================================================= */
+function init(){
+  renderCatalogos();
+  initArchivos();
+  const pasoGuardado = cargarBorrador();
+  aplicarCondiciones();
+
+  form.addEventListener('input', e => {
+    const f = e.target.closest('.field'); if (f) f.classList.remove('invalido');
+    guardarBorrador();
+  });
+  form.addEventListener('change', e => {
+    const f = e.target.closest('.field'); if (f) f.classList.remove('invalido');
+    aplicarCondiciones(); guardarBorrador();
+  });
+  form.addEventListener('submit', e => e.preventDefault());
+
+  $('#btnSig').onclick = () => pasoActual === pasos.length - 1 ? enviar() : irA(pasoActual + 1);
+  $('#btnAtras').onclick = () => mostrarPaso(pasoActual - 1);
+  $('#btnImprimir').onclick = () => window.print();
+  $('#btnCopiaOk').onclick = descargarCopia;
+  $('#btnCerrarOffline').onclick = () => $('#ovOffline').classList.remove('on');
+
+  mostrarPaso(pasoGuardado);
+  if (pasoGuardado > 0) toast('Retomamos tu borrador donde lo dejaste');
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
